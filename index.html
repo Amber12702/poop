@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            background-color: #03bef5;
+            cursor: url("poop-cursor.png") 16 16, auto;
+            min-height: 100vh;
+            min-width: 100vh;
+        }
+    </style>
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: left;
+            box-shadow: 0 0 10px rgba(0, 47, 255, 0.7);
+        }
+
+        .sign {
+            width: 900px;
+            height: 1100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .toilet {
+            width: 200px;
+            height: 300px;
+            background-color: white;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .tank {
+            width: 80px;
+            height: 250px;
+            background-color: #D3D3D3;
+            position: absolute;
+            top: 20px;
+            left: 60px;
+        }
+
+        .seat {
+            width: 180px;
+            height: 20px;
+            background-color: #FFD700;
+            position: absolute;
+            top: 50px;
+            left: 10px;
+        }
+
+        .lid {
+            width: 180px;
+            height: 20px;
+            background-color: #FFD700;
+            position: absolute;
+            top: 110px;
+            left: 10px;
+        }
+
+        .bowl {
+            width: 140px;
+            height: 100px;
+            background-color: #FFFFFF;
+            border: 2px solid #000;
+            position: absolute;
+            top: 140px;
+            left: 30px;
+            border-bottom-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+        }
+
+        .flush-handle {
+            width: 10px;
+            height: 100px;
+            background-color: #D3D3D3;
+            position: absolute;
+            top: 20px;
+            left: 160px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 47, 255, 0.7);
+        }
+
+        .flush-handle:active {
+            transform: translateY(20px);
+        }
+
+        .cursor-mark {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-image: url("poop-cursor.png");
+            background-size: cover;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>
+        <img class="sign" src="sign.png" />
+    </div>
+    <div class="toilet">
+        <div class="tank"></div>
+        <div class="seat"></div>
+        <div class="lid"></div>
+        <div class="bowl"></div>
+        <div class="flush-handle" onclick="clearMarks()"></div>
+    </div>
+
+    <script>
+        document.addEventListener('mousemove', (e) => {
+            const cursorMark = document.createElement('div');
+            cursorMark.classList.add('cursor-mark');
+            cursorMark.style.top = (e.clientY - 10) + 'px';
+            cursorMark.style.left = (e.clientX - 10) + 'px';
+            document.body.appendChild(cursorMark);
+        });
+
+        function clearMarks() {
+            const cursorMarks = document.querySelectorAll('.cursor-mark');
+            cursorMarks.forEach(mark => mark.remove());
+            let audio = new Audio();
+            audio.src = 'flushsound.mp3';
+            audio.play();
+        }
+    </script>
+
+</body>
+
+</html>
